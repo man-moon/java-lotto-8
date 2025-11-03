@@ -10,11 +10,19 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상, 45 이하여야 합니다.");
+        }
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복일 수 없습니다.");
+        }
     }
-
-    // TODO: 추가 기능 구현
 }
