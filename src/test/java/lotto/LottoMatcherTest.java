@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoMatcher;
@@ -21,9 +22,9 @@ public class LottoMatcherTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         LottoMatcher lottoMatcher = new LottoMatcher(winningLotto);
 
-        List<Rank> ranks = lottoMatcher.matchAll(lottos);
+        LottoResult lottoResult = lottoMatcher.matchAll(lottos);
 
-        assertThat(ranks.getFirst()).isEqualTo(FIRST);
+        assertThat(lottoResult.getRankCounts(FIRST)).isEqualTo(1);
     }
     @Test
     void 번호_5개가_일치하고_보너스_번호가_일치하면_2등_당첨() {
@@ -33,9 +34,9 @@ public class LottoMatcherTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         LottoMatcher lottoMatcher = new LottoMatcher(winningLotto);
 
-        List<Rank> ranks = lottoMatcher.matchAll(lottos);
+        LottoResult lottoResult = lottoMatcher.matchAll(lottos);
 
-        assertThat(ranks.getFirst()).isEqualTo(SECOND);
+        assertThat(lottoResult.getRankCounts(SECOND)).isEqualTo(1);
     }
 
     @Test
@@ -46,9 +47,9 @@ public class LottoMatcherTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         LottoMatcher lottoMatcher = new LottoMatcher(winningLotto);
 
-        List<Rank> ranks = lottoMatcher.matchAll(lottos);
+        LottoResult lottoResult = lottoMatcher.matchAll(lottos);
 
-        assertThat(ranks.getFirst()).isEqualTo(THIRD);
+        assertThat(lottoResult.getRankCounts(THIRD)).isEqualTo(1);
     }
 
     @Test
@@ -59,9 +60,9 @@ public class LottoMatcherTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         LottoMatcher lottoMatcher = new LottoMatcher(winningLotto);
 
-        List<Rank> ranks = lottoMatcher.matchAll(lottos);
+        LottoResult lottoResult = lottoMatcher.matchAll(lottos);
 
-        assertThat(ranks.getFirst()).isEqualTo(FOURTH);
+        assertThat(lottoResult.getRankCounts(FOURTH)).isEqualTo(1);
     }
 
     @Test
@@ -72,9 +73,9 @@ public class LottoMatcherTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         LottoMatcher lottoMatcher = new LottoMatcher(winningLotto);
 
-        List<Rank> ranks = lottoMatcher.matchAll(lottos);
+        LottoResult lottoResult = lottoMatcher.matchAll(lottos);
 
-        assertThat(ranks.getFirst()).isEqualTo(FIFTH);
+        assertThat(lottoResult.getRankCounts(FIFTH)).isEqualTo(1);
     }
 
     @Test
@@ -85,8 +86,8 @@ public class LottoMatcherTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         LottoMatcher lottoMatcher = new LottoMatcher(winningLotto);
 
-        List<Rank> ranks = lottoMatcher.matchAll(lottos);
+        LottoResult lottoResult = lottoMatcher.matchAll(lottos);
 
-        assertThat(ranks.getFirst()).isEqualTo(NONE);
+        assertThat(lottoResult.getRankCounts(NONE)).isEqualTo(1);
     }
 }
