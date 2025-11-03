@@ -1,9 +1,11 @@
 package lotto;
 
-import static lotto.LottoPublisher.*;
+import static lotto.service.LottoPublisher.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import lotto.service.LottoPublisher;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.Test;
 
 public class LottoPublisherTest {

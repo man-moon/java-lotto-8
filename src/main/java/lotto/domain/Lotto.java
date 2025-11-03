@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -10,8 +10,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getLottoNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     private void validate(List<Integer> numbers) {
