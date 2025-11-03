@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.service.LottoPublisher.*;
+import static lotto.config.LottoConfig.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;

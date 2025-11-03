@@ -1,5 +1,9 @@
 package lotto.view;
 
+import static lotto.config.ErrorMessage.INVALID_BALANCE_FORMAT;
+import static lotto.config.ErrorMessage.INVALID_BONUS_FORMAT;
+import static lotto.config.ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Stream;
@@ -12,7 +16,7 @@ public class Input {
         try {
             return Long.parseLong(buyPriceInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_BALANCE_FORMAT);
         }
     }
 
@@ -26,7 +30,7 @@ public class Input {
                     .sorted()
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 \"숫자,숫자,숫자,숫자,숫자,숫자\" 형식이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_FORMAT);
         }
     }
 
@@ -37,7 +41,7 @@ public class Input {
         try {
             return Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_BONUS_FORMAT);
         }
     }
 }

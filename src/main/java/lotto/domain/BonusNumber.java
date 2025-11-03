@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.config.ErrorMessage.INVALID_BONUS_RANGE;
+import static lotto.config.LottoConfig.MAX_LOTTO_NUMBER;
+import static lotto.config.LottoConfig.MIN_LOTTO_NUMBER;
+
 public class BonusNumber {
     private final int number;
 
@@ -17,8 +21,8 @@ public class BonusNumber {
     }
 
     private void validate(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 이상, 45 이하여야 합니다.");
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(INVALID_BONUS_RANGE);
         }
     }
 }

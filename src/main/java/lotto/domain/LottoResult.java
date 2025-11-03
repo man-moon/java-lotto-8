@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static lotto.service.LottoPublisher.LOTTO_TICKET_PRICE;
+import static lotto.config.LottoConfig.LOTTO_TICKET_PRICE;
+import static lotto.config.LottoConfig.PROFIT_RATE_MULTIPLIER;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -21,7 +22,7 @@ public class LottoResult {
                 .mapToLong(Rank::getPrize)
                 .sum();
         long totalCost = ranks.size() * LOTTO_TICKET_PRICE;
-        this.profitRate = (double) totalPrize / totalCost * 100;
+        this.profitRate = (double) totalPrize / totalCost * PROFIT_RATE_MULTIPLIER;
     }
 
     public int getRankCounts(Rank rank) {

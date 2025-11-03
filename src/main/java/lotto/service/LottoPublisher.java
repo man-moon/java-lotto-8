@@ -1,5 +1,14 @@
 package lotto.service;
 
+import static lotto.config.ErrorMessage.INVALID_BALANCE_RANGE;
+import static lotto.config.ErrorMessage.INVALID_BALANCE_UNIT;
+import static lotto.config.LottoConfig.LOTTO_TICKET_PRICE;
+import static lotto.config.LottoConfig.MAX_LOTTO_NUMBER;
+import static lotto.config.LottoConfig.MAX_TOTAL_BALANCE;
+import static lotto.config.LottoConfig.MIN_LOTTO_NUMBER;
+import static lotto.config.LottoConfig.MIN_TOTAL_BALANCE;
+import static lotto.config.LottoConfig.LOTTO_NUMBER_SIZE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +16,6 @@ import lotto.domain.Lotto;
 
 public class LottoPublisher {
     private long totalBalance;
-    public static final long LOTTO_TICKET_PRICE = 1_000L;
-    public static final long MIN_TOTAL_BALANCE = 0L;
-    public static final long MAX_TOTAL_BALANCE = 1_000_000_000L;
 
     public LottoPublisher(long totalBalance) {
         validate(totalBalance);
@@ -31,15 +37,15 @@ public class LottoPublisher {
 
     private void validate(long totalBalance) {
         if(totalBalance > MAX_TOTAL_BALANCE || totalBalance < MIN_TOTAL_BALANCE) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 0원 이상 10억 이하여야 합니다.");
+            throw new IllegalArgumentException(INVALID_BALANCE_RANGE);
         }
-        if(totalBalance % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
+        if(totalBalance % LOTTO_TICKET_PRICE != 0) {
+            throw new IllegalArgumentException(INVALID_BALANCE_UNIT);
         }
     }
 
     private List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_SIZE)
                 .stream()
                 .sorted()
                 .toList();
