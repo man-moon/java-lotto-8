@@ -29,11 +29,11 @@ public enum Rank {
     }
 
     public static Rank of(int matchedCount, boolean isBonusMatched) {
-        if(matchedCount == 6) return FIRST;
-        if(matchedCount == 5 && isBonusMatched) return SECOND;
-        if(matchedCount == 5) return THIRD;
-        if(matchedCount == 4) return FOURTH;
-        if(matchedCount == 3) return FIFTH;
+        if (matchedCount == 6) return FIRST;
+        if (matchedCount == 5 && isBonusMatched) return SECOND;
+        if (matchedCount == 5) return THIRD;
+        if (matchedCount == 4) return FOURTH;
+        if (matchedCount == 3) return FIFTH;
         return NONE;
     }
 

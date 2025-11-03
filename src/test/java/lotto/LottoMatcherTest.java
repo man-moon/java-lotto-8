@@ -7,7 +7,6 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoMatcher;
 import org.junit.jupiter.api.Test;
@@ -26,6 +25,7 @@ public class LottoMatcherTest {
 
         assertThat(lottoResult.getRankCounts(FIRST)).isEqualTo(1);
     }
+
     @Test
     void 번호_5개가_일치하고_보너스_번호가_일치하면_2등_당첨() {
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
