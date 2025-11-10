@@ -12,6 +12,8 @@ import static lotto.config.LottoConfig.LOTTO_NUMBER_SIZE;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 
 public class LottoPublisher {
@@ -32,6 +34,18 @@ public class LottoPublisher {
         }
         this.totalBalance = 0;
 
+        return result;
+    }
+
+    public List<Lotto> publishWithParallelStream() {
+        long numTickets = totalBalance / LOTTO_TICKET_PRICE;
+
+        List<Lotto> result = IntStream.range(0, (int) numTickets)
+                .parallel()
+                .mapToObj(i -> new Lotto(generateRandomNumbers()))
+                .collect(Collectors.toList());
+
+        this.totalBalance = 0;
         return result;
     }
 
